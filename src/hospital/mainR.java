@@ -5,6 +5,11 @@
  */
 package hospital;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author crist
@@ -17,12 +22,14 @@ public class mainR extends javax.swing.JFrame {
     private String nombre;
     private String paterno;
     private String materno;
+    private String email;
     
-    public mainR(String nombre, String paterno, String materno) {
+    public mainR(String nombre, String paterno, String materno, String email) {
         initComponents();
         this.nombre = nombre;
         this.paterno = paterno;
         this.materno = materno;
+        this.email = email;
     }
     
     public String getNombre(){
@@ -48,6 +55,14 @@ public class mainR extends javax.swing.JFrame {
     public void setMaterno(String materno){
         this.materno = materno;
     }
+    
+    public String getEmail(){
+        return email;
+    }
+    
+    public void setEmail(String email){
+        this.email = email;
+    }
 
     private mainR() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -62,25 +77,52 @@ public class mainR extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         txtBienvenida = new javax.swing.JLabel();
-        btnLogout = new javax.swing.JButton();
         btnRegistrarPaciente = new javax.swing.JButton();
-        btnRegistrarMedico = new javax.swing.JButton();
         btnBajaPaciente = new javax.swing.JButton();
+        btnRegistrarMedico = new javax.swing.JButton();
         btnBajaMedico = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        btnCita = new javax.swing.JButton();
+        btnVenta = new javax.swing.JButton();
+        btnRecetas = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Main Recepcionista");
 
-        txtBienvenida.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtBienvenida.setText("BIENVENIDO RECEPCIONISTA!!!");
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnLogout.setText("Logout");
-        btnLogout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogoutActionPerformed(evt);
-            }
-        });
+        jPanel2.setBackground(new java.awt.Color(0, 204, 102));
 
+        txtBienvenida.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtBienvenida.setText("INICIO RECEPCIONISTA");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtBienvenida)
+                .addGap(120, 120, 120))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(17, Short.MAX_VALUE)
+                .addComponent(txtBienvenida)
+                .addContainerGap())
+        );
+
+        btnRegistrarPaciente.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnRegistrarPaciente.setText("Registrar Paciente");
         btnRegistrarPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,6 +130,15 @@ public class mainR extends javax.swing.JFrame {
             }
         });
 
+        btnBajaPaciente.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnBajaPaciente.setText("Dar de Baja Paciente");
+        btnBajaPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBajaPacienteActionPerformed(evt);
+            }
+        });
+
+        btnRegistrarMedico.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnRegistrarMedico.setText("Registrar Médico");
         btnRegistrarMedico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,49 +146,158 @@ public class mainR extends javax.swing.JFrame {
             }
         });
 
-        btnBajaPaciente.setText("Dar de Baja Paciente");
-
+        btnBajaMedico.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnBajaMedico.setText("Dar de Baja Médico");
+        btnBajaMedico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBajaMedicoActionPerformed(evt);
+            }
+        });
+
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton1.setText("Ver Médicos");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        btnCita.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnCita.setText("Citas");
+        btnCita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCitaActionPerformed(evt);
+            }
+        });
+
+        btnVenta.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnVenta.setText("Venta");
+        btnVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVentaActionPerformed(evt);
+            }
+        });
+
+        btnRecetas.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnRecetas.setText("Recetas");
+        btnRecetas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRecetasActionPerformed(evt);
+            }
+        });
+
+        btnLogout.setBackground(java.awt.Color.red);
+        btnLogout.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnLogout.setText("Cerrar Sesión");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel1.setText("Administrar Pacientes");
+
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel2.setText("Administrar Médicos");
+
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel3.setText("Administrar Citas");
+
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel4.setText("Administrar Recetas");
+
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel5.setText("Cobrar Cita");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnRegistrarMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnBajaMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRegistrarPaciente)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnBajaPaciente)
+                        .addContainerGap(20, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnLogout)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(btnCita)))
+                                .addGap(51, 51, 51)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(btnRecetas)))))
+                        .addGap(49, 49, 49)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(btnVenta))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(142, 142, 142))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(btnRegistrarPaciente)
+                    .addComponent(btnBajaPaciente))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(btnRegistrarMedico)
+                    .addComponent(btnBajaMedico))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnVenta)
+                    .addComponent(btnRecetas)
+                    .addComponent(btnCita))
+                .addGap(18, 18, 18)
+                .addComponent(btnLogout)
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(200, 200, 200)
-                        .addComponent(btnLogout))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnBajaPaciente)
-                                    .addComponent(btnRegistrarPaciente))
-                                .addGap(113, 113, 113)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnRegistrarMedico)
-                                    .addComponent(btnBajaMedico)))
-                            .addComponent(txtBienvenida))))
-                .addContainerGap(66, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txtBienvenida)
-                .addGap(77, 77, 77)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegistrarPaciente)
-                    .addComponent(btnRegistrarMedico))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBajaPaciente)
-                    .addComponent(btnBajaMedico))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
-                .addComponent(btnLogout)
-                .addGap(22, 22, 22))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -147,6 +307,7 @@ public class mainR extends javax.swing.JFrame {
         // TODO add your handling code here:
         login l = new login();
         l.setVisible(true);
+        l.setLocationRelativeTo(null);
         hide();
     }//GEN-LAST:event_btnLogoutActionPerformed
 
@@ -154,13 +315,74 @@ public class mainR extends javax.swing.JFrame {
         // TODO add your handling code here:
         altaMedico am = new altaMedico();
         am.setVisible(true);
+        am.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnRegistrarMedicoActionPerformed
 
     private void btnRegistrarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarPacienteActionPerformed
         // TODO add your handling code here:
         altaPaciente ap = new altaPaciente();
         ap.setVisible(true);
+        ap.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnRegistrarPacienteActionPerformed
+
+    private void btnBajaPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajaPacienteActionPerformed
+        // TODO add your handling code here:
+        bajaPaciente bp = new bajaPaciente();
+        bp.setVisible(true);
+        bp.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnBajaPacienteActionPerformed
+
+    private void btnBajaMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajaMedicoActionPerformed
+        // TODO add your handling code here:
+        bajaMedico bd = new bajaMedico();
+        bd.setVisible(true);
+        bd.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnBajaMedicoActionPerformed
+
+    private void btnCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCitaActionPerformed
+        // TODO add your handling code here:
+        int idRec = 0;
+        
+        conexion conectar = new conexion();
+        Statement st = conectar.Conectar();
+        
+        // Obtenemos el id del recepcionista
+        try{
+            ResultSet rs = st.executeQuery("SELECT idRecep FROM Recepcionista WHERE email='"+getEmail()+"'");
+            while(rs.next()){
+                idRec = rs.getInt("idRecep");
+            }
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+        
+        citas c = new citas(idRec);
+        c.setVisible(true);
+        c.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnCitaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        verMedicos m = new verMedicos();
+        m.setVisible(true);
+        m.setLocationRelativeTo(null);
+        m.mostrar();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnRecetasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecetasActionPerformed
+        // TODO add your handling code here:
+        verRecetas c = new verRecetas();
+        c.setVisible(true);
+        c.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnRecetasActionPerformed
+
+    private void btnVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentaActionPerformed
+        // TODO add your handling code here:
+        venta v = new venta();
+        v.setVisible(true);
+        v.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnVentaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,9 +426,20 @@ public class mainR extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBajaMedico;
     private javax.swing.JButton btnBajaPaciente;
+    private javax.swing.JButton btnCita;
     private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnRecetas;
     private javax.swing.JButton btnRegistrarMedico;
     private javax.swing.JButton btnRegistrarPaciente;
+    private javax.swing.JButton btnVenta;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel txtBienvenida;
     // End of variables declaration//GEN-END:variables
 }

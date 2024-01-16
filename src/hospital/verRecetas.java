@@ -15,29 +15,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author crist
  */
-public class mainP extends javax.swing.JFrame {
+public class verRecetas extends javax.swing.JFrame {
 
     /**
-     * Creates new form mainP
+     * Creates new form verRecetas
      */
-    private String email;
-    
-    
-    public mainP(String email) {
+    public verRecetas() {
         initComponents();
-        this.email = email;
-    }
-
-    private mainP() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    public String getEmail(){
-        return email;
-    }
-    
-    public void setEmail(String email){
-        this.email = email;
     }
 
     /**
@@ -51,13 +35,14 @@ public class mainP extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        txt = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         btnFiltrar = new javax.swing.JButton();
-        btnCerrar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tableCitas = new javax.swing.JTable();
+        tableRecetas = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        cboxEstado = new javax.swing.JComboBox<>();
+        txtMedico = new javax.swing.JTextField();
+        btnMedicos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,27 +50,26 @@ public class mainP extends javax.swing.JFrame {
 
         jPanel2.setBackground(java.awt.Color.lightGray);
 
-        txt.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        txt.setText("INICIO PACIENTE");
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel1.setText("Recetas Emitidas");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(255, 255, 255)
-                .addComponent(txt)
+                .addGap(421, 421, 421)
+                .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txt)
-                .addGap(21, 21, 21))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btnFiltrar.setBackground(java.awt.Color.cyan);
         btnFiltrar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnFiltrar.setText("Filtrar");
         btnFiltrar.addActionListener(new java.awt.event.ActionListener() {
@@ -94,17 +78,16 @@ public class mainP extends javax.swing.JFrame {
             }
         });
 
-        btnCerrar.setBackground(java.awt.Color.red);
-        btnCerrar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        btnCerrar.setText("Cerrar Sesión");
-        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setBackground(java.awt.Color.red);
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton1.setText("Cerrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCerrarActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
-        tableCitas.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        tableCitas.setModel(new javax.swing.table.DefaultTableModel(
+        tableRecetas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -112,16 +95,24 @@ public class mainP extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "ID Cita", "Nombre del Médico", "Fecha", "Hora", "Consultorio", "Precio"
+                "ID Receta", "Fecha", "Paciente", "Doctor", "Diagnóstico", "Tratamiento"
             }
         ));
-        jScrollPane2.setViewportView(tableCitas);
+        jScrollPane2.setViewportView(tableRecetas);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel2.setText("Filtrar por:");
+        jLabel2.setText("ID Médico*:");
 
-        cboxEstado.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        cboxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "En curso", "Pagada", "Cancelada" }));
+        txtMedico.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+
+        btnMedicos.setBackground(java.awt.Color.cyan);
+        btnMedicos.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnMedicos.setText("Médicos");
+        btnMedicos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMedicosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -129,37 +120,43 @@ public class mainP extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(241, 241, 241)
-                .addComponent(jLabel2)
-                .addGap(12, 12, 12)
-                .addComponent(cboxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnFiltrar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 702, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(414, 414, 414)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnFiltrar))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1071, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCerrar)))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnMedicos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(cboxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(txtMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFiltrar))
+                .addGap(12, 12, 12)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCerrar)
-                .addGap(0, 8, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(btnMedicos, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -178,19 +175,27 @@ public class mainP extends javax.swing.JFrame {
 
     private void btnFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarActionPerformed
         // TODO add your handling code here:
-        String edoCita = cboxEstado.getSelectedItem().toString();
-        int idEstado = getEstado(edoCita);
-        int idPaciente = getPaciente(email);
-        mostrar(idEstado,idPaciente);
+        int idMed = Integer.parseInt(txtMedico.getText());
+        if(validarMed(idMed)){
+            mostrar(idMed);
+        }else{
+            JOptionPane.showMessageDialog(null, "No existe ningún médico con ese ID");
+        }
+        
     }//GEN-LAST:event_btnFiltrarActionPerformed
 
-    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        login l = new login();
-        l.setVisible(true);
-        l.setLocationRelativeTo(null);
         hide();
-    }//GEN-LAST:event_btnCerrarActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnMedicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMedicosActionPerformed
+        // TODO add your handling code here:
+        verMedicos v = new verMedicos();
+        v.setVisible(true);
+        v.setLocationRelativeTo(null);
+        v.mostrar();
+    }//GEN-LAST:event_btnMedicosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,102 +214,79 @@ public class mainP extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(mainP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(verRecetas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(mainP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(verRecetas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(mainP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(verRecetas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(mainP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(verRecetas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new mainP().setVisible(true);
+                new verRecetas().setVisible(true);
             }
         });
     }
     
-    public int getEstado(String estado){
-        int idEstado=0;
+    public boolean validarMed(int idMed){
         conexion conectar = new conexion();
         Statement st = conectar.Conectar();
+        boolean validar = false;
         try{
-            ResultSet rs = st.executeQuery("SELECT COUNT(*) AS existe FROM EstadosCita WHERE descripcion='"+estado+"'");
+            ResultSet rs = st.executeQuery("SELECT COUNT(*) AS existe FROM Medico WHERE idMed="+idMed);
             if(rs.next()){
                 int validacion = rs.getInt("existe");
                 if(validacion > 0){
-                    rs = st.executeQuery("SELECT idestadocita FROM EstadosCita WHERE descripcion='"+estado+"'");
-                    while(rs.next()){
-                        idEstado = rs.getInt("idestadocita");
-                    }
+                    // Existe el médico en la bd
+                    validar = true;
                 }else{
+                    // No existe el médico con dicho id en la bd
+                    validar = false;
                 }
             }
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,e);
+            JOptionPane.showMessageDialog(null, e);
         }
-        return idEstado;
+        return validar;
     }
     
-    public int getPaciente(String email){
-        int idPac = 0;
-        conexion conectar = new conexion();
-        Statement st = conectar.Conectar();
-        try{
-            ResultSet rs = st.executeQuery("SELECT COUNT(*) AS existe FROM Paciente WHERE email='"+email+"'");
-            if(rs.next()){
-                int validacion = rs.getInt("existe");
-                if(validacion > 0){
-                    // Existe el paciente en la bd
-                    rs = st.executeQuery("SELECT idPac FROM Paciente WHERE email='"+email+"'");
-                    while(rs.next()){
-                        idPac = rs.getInt("idPac");
-                    }
-                }else{
-                    // No existe el paciente en la bd
-                }
-            }
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,e);
-        }
-        return idPac;
-    }
-    
-    public void mostrar(int idEstado,int idPac){
-        String [] nombreColumnas = {"ID Cita","Especialidad","Fecha","Hora","Consultorio","Precio"};
+    public void mostrar(int idMed){
+        String [] nombreColumnas = {"ID Receta","Fecha","Paciente","Médico","Diagnóstico","Tratamiento"};
         String [] registros = new String[6];
         DefaultTableModel modelo = new DefaultTableModel(null,nombreColumnas);
         conexion conectar = new conexion();
         Statement st = conectar.Conectar();
         try{
-            ResultSet rs = st.executeQuery("SELECT c.idCita, es.especialidad, CONVERT(VARCHAR, c.fecha, 23) AS 'Fecha', CONVERT(VARCHAR, c.horaCita, 108) AS 'Hora', c.consultorio, c.precio FROM Expediente e JOIN Paciente p ON e.idPac=p.idPac JOIN Cita c ON p.idPac=c.idPac JOIN Medico m ON c.idMed=m.idMed JOIN Usuario u ON m.email=u.email JOIN Especialidad es ON m.idEspecialidad=es.idEspecialidad WHERE e.idPac="+idPac+" AND c.estadoCita="+idEstado);
+            ResultSet rs = st.executeQuery("SELECT r.idReceta, CONVERT(VARCHAR, c.fecha, 23) AS 'Fecha', u.nombre+' '+u.paterno+' '+u.materno AS 'Paciente', um.nombre+' '+um.paterno+' '+um.materno AS 'Doctor',  r.diagnostico, r.prescripcion FROM Cita c JOIN Paciente p ON c.idPac=p.idPac JOIN Usuario u ON p.email=u.email JOIN Medico m ON c.idMed=m.idMed JOIN Usuario um ON m.email=um.email JOIN Receta r ON c.idCita=r.idCita WHERE c.idMed="+idMed);
             while(rs.next()){
-                registros[0] = rs.getString("idCita");
-                registros[1] = rs.getString("especialidad");
-                registros[2] = rs.getString("Fecha");
-                registros[3] = rs.getString("Hora");
-                registros[4] = rs.getString("consultorio");
-                registros[5] = rs.getString("precio");
+                registros[0] = rs.getString("idReceta");
+                registros[1] = rs.getString("Fecha");
+                registros[2] = rs.getString("Paciente");
+                registros[3] = rs.getString("Doctor");
+                registros[4] = rs.getString("diagnostico");
+                registros[5] = rs.getString("prescripcion");
                 modelo.addRow(registros);
             }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, e);
         }
-        tableCitas.setModel(modelo);
+        tableRecetas.setModel(modelo);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnFiltrar;
-    private javax.swing.JComboBox<String> cboxEstado;
+    private javax.swing.JButton btnMedicos;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable tableCitas;
-    private javax.swing.JLabel txt;
+    private javax.swing.JTable tableRecetas;
+    private javax.swing.JTextField txtMedico;
     // End of variables declaration//GEN-END:variables
 }

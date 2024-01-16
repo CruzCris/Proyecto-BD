@@ -5,6 +5,11 @@
  */
 package hospital;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author crist
@@ -17,12 +22,14 @@ public class mainM extends javax.swing.JFrame {
     private String nombre;
     private String paterno;
     private String materno;
+    private String email;
     
-    public mainM(String nombre, String paterno, String materno) {
+    public mainM(String nombre, String paterno, String materno, String email) {
         initComponents();
         this.nombre = nombre;
         this.paterno = paterno;
         this.materno = materno;
+        this.email = email;
     }
     
     public String getNombre(){
@@ -48,6 +55,14 @@ public class mainM extends javax.swing.JFrame {
     public void setMaterno(String materno){
         this.materno = materno;
     }
+    
+    public String getEmail(){
+        return email;
+    }
+    
+    public void setEmail(String email){
+        this.email = email;
+    }
 
     private mainM() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -62,42 +77,138 @@ public class mainM extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtBienvenida = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        btnCitas = new javax.swing.JButton();
+        btnPacientes = new javax.swing.JButton();
+        btnRecetar = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        txtBienvenida = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        txtBienvenida.setText("BIENVENIDO MÉDICO!!!");
+        jPanel1.setBackground(java.awt.Color.white);
 
-        btnLogout.setText("Logout");
+        btnCitas.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnCitas.setText("Mis Citas");
+        btnCitas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCitasActionPerformed(evt);
+            }
+        });
+
+        btnPacientes.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnPacientes.setText("Historial Médico");
+        btnPacientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPacientesActionPerformed(evt);
+            }
+        });
+
+        btnRecetar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnRecetar.setText("Atender");
+        btnRecetar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRecetarActionPerformed(evt);
+            }
+        });
+
+        btnLogout.setBackground(java.awt.Color.red);
+        btnLogout.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnLogout.setText("Cerrar Sesión");
         btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLogoutActionPerformed(evt);
             }
         });
 
+        jPanel2.setBackground(java.awt.Color.black);
+
+        txtBienvenida.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtBienvenida.setForeground(new java.awt.Color(255, 255, 255));
+        txtBienvenida.setText("INICIO MÉDICO");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(85, 85, 85)
+                .addComponent(txtBienvenida)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(17, Short.MAX_VALUE)
+                .addComponent(txtBienvenida)
+                .addContainerGap())
+        );
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel1.setText("Administrar Citas");
+
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel2.setText("Administrar Pacientes");
+
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel3.setText("Atender Cita");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnPacientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCitas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnRecetar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(41, 41, 41))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(93, 93, 93)
+                .addComponent(btnLogout)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(btnCitas))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(btnPacientes))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(btnRecetar))
+                .addGap(18, 18, 18)
+                .addComponent(btnLogout)
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(152, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(txtBienvenida)
-                        .addGap(132, 132, 132))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnLogout)
-                        .addGap(160, 160, 160))))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(130, 130, 130)
-                .addComponent(txtBienvenida)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
-                .addComponent(btnLogout)
-                .addGap(63, 63, 63))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -107,8 +218,34 @@ public class mainM extends javax.swing.JFrame {
         // TODO add your handling code here:
         login l = new login();
         l.setVisible(true);
+        l.setLocationRelativeTo(null);
         hide();
     }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void btnCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCitasActionPerformed
+        // TODO add your handling code here:
+        // Obtenemos el id del médico
+        int idMed = getMedico(getEmail());
+        citasMedico c = new citasMedico(idMed);
+        c.setVisible(true);
+        c.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnCitasActionPerformed
+
+    private void btnRecetarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecetarActionPerformed
+        // TODO add your handling code here:
+        // Obtenemos el id del médico
+        int idMed = getMedico(getEmail());
+        recetar r = new recetar(idMed);
+        r.setVisible(true);
+    }//GEN-LAST:event_btnRecetarActionPerformed
+
+    private void btnPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPacientesActionPerformed
+        // TODO add your handling code here:
+        int idMed = getMedico(getEmail());
+        historialPaciente h = new historialPaciente(idMed);
+        h.setVisible(true);
+        h.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnPacientesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,9 +285,41 @@ public class mainM extends javax.swing.JFrame {
     public void Bienvenida(){
         txtBienvenida.setText("Bienvenid@ Médico "+getNombre()+" "+getPaterno()+" "+getMaterno());
     }
+    
+    public int getMedico(String email){
+        int idMed = 0;
+        conexion conectar = new conexion();
+        Statement st = conectar.Conectar();
+        try{
+            ResultSet rs = st.executeQuery("SELECT COUNT(*) AS existe FROM Medico WHERE email='"+email+"'");
+            if(rs.next()){
+                int validacion = rs.getInt("existe");
+                if(validacion > 0){
+                    // Existe el médico en la bd
+                    rs = st.executeQuery("SELECT idMed FROM Medico WHERE email='"+email+"'");
+                    while(rs.next()){
+                        idMed = rs.getInt("idMed");
+                    }
+                }else{
+                    // No existe el médico en la bd
+                }
+            }
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        return idMed;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCitas;
     private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnPacientes;
+    private javax.swing.JButton btnRecetar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel txtBienvenida;
     // End of variables declaration//GEN-END:variables
 }

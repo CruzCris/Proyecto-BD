@@ -20,6 +20,16 @@ public class conexion {
     public Connection cn = null;
     public Statement st = null;
     
+    public Connection obtenerConexion(){
+        Connection conexion = null;
+        try{
+            conexion = DriverManager.getConnection(url,usuario,pass);
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return conexion;
+    }
+    
     public Statement Conectar(){
         try{
             Connection cn = DriverManager.getConnection(url,usuario,pass);
